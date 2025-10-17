@@ -1,8 +1,23 @@
-CREATE OR REPLACE TABLE `techjobskills.Tech_Skills.SkillMentionsByTitle` AS
+CREATE OR REPLACE TABLE `techjobskills.Tech_Skills.SkillShareByTitle` AS
+WITH total_by_title AS (
+  SELECT LOWER(TRIM(Title)) AS title, COUNT(DISTINCT JobID) AS total_ads
+  FROM `techjobskills.Tech_Skills.jobs_ready`
+  GROUP BY title
+),
+skill_counts AS (
+  SELECT LOWER(TRIM(Title)) AS title,
+         LOWER(TRIM(skill)) AS skill,
+         COUNT(DISTINCT JobID) AS ads_with_skill
+  FROM `techjobskills.Tech_Skills.jobs_ready` 
+  JOIN techjobskills.Tech_Skills.job_skills2 USING (JobID)
+  GROUP BY title, skill
+)
 SELECT
-  LOWER(TRIM(Title)) AS title,
-  LOWER(TRIM(skill)) AS skill,
-  COUNT(*) AS mentions
-FROM `techjobskills.Tech_Skills.jobs_ready` j
-JOIN techjobskills.Tech_Skills.job_skills2 USING (JobID)
-GROUP BY title, skill; 
+  sc.title,
+  sc.skill,
+  ads_with_skill,
+  t.total_ads,
+  ROUND(ads_with_skill / t.total_ads, 3) AS share_of_title  -- 0..1
+FROM skill_counts sc
+JOIN total_by_title t USING (title)
+ORDER BY title, share_of_title DESC;
