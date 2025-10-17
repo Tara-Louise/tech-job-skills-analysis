@@ -1,0 +1,4 @@
+SELECT title, skill, ROUND(AVG(share_of_title), 2) AS avg_share
+FROM `techjobskills.Tech_Skills.SkillShareByTitle`
+WHERE skill IN ('python', 'sql', 'aws')
+GROUP BY title, skill;
