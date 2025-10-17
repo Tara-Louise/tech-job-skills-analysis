@@ -1,0 +1,8 @@
+CREATE OR REPLACE TABLE `techjobskills.Tech_Skills.SkillMentionsByTitle` AS
+SELECT
+  LOWER(TRIM(Title)) AS title,
+  LOWER(TRIM(skill)) AS skill,
+  COUNT(*) AS mentions
+FROM `techjobskills.Tech_Skills.jobs_ready` j
+JOIN techjobskills.Tech_Skills.job_skills2 USING (JobID)
+GROUP BY title, skill; 
