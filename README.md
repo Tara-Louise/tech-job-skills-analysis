@@ -3,14 +3,15 @@ Analysis of 2025–2026 tech job skills using BigQuery (Top 20 Skills, Top 10 Jo
 
 This project explores the most in-demand **technical** and **soft** skills in tech jobs using data from public job listings (Gov.UK / Kaggle) and **Google BigQuery**.
 
-## Goals
+## Insights pulled
 - Top 20 Technical Skills mentioned in 
 - Top 20 Soft Skills mentioned
 - Top 10 Job Titles mentioned
-- Skill mentions within each title
-- Convert to percent of ads for that title (per-title share)
-- job titles by category (Data, AI, Cloud, etc.).
-- career level (Entry, Junior, Senior, etc.).
+- Top skill mentions within each title
+- Percent of ads (per-title share)
+- The most Job titles by category (Data, AI, Cloud, etc.).
+- The most needed career level (Entry, Junior, Senior, etc.).
+- The most advertised Job level per title
 
 ## Steps
 1. Data Cleaning (01_data_cleaning.sql)
@@ -38,7 +39,9 @@ After further investigation:
 - I added categorical groupings (e.g., Cloud, Data, AI/ML, Security, Design) and seniority levels (Entry, Junior, Senior, Lead, etc.) to better interpret job market trends.
 - I counted how many job titles/adverts I was looking at = (218)- representing a broad cross-section of the technology job market in 2025–2026.
 - I counted how many job adverts in total = 1067
-- I then looked at types of roles  
+- I then looked at types of roles
+- Also pulled level of roles against each title
+- The level of seniority against each role most advertised. 
 
 Roles span across Software Engineering, Data, Cloud, AI/ML, Security, and Design, with titles ranging from entry-level trainees to senior architects and managers.
 
