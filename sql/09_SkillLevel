@@ -1,0 +1,25 @@
+CREATE OR REPLACE TABLE `techjobskills.Tech_Skills.JobLevel` AS
+SELECT
+  JobID,
+  Title,
+  CASE
+    WHEN LOWER(Title) LIKE '%fresher%' 
+      OR LOWER(Title) LIKE '%entry%' 
+      OR LOWER(Title) LIKE '%trainee%' 
+      OR LOWER(Title) LIKE '%intern%' 
+      OR LOWER(Title) LIKE '%graduate%' 
+      THEN 'Entry-Level'
+    WHEN LOWER(Title) LIKE '%junior%' THEN 'Junior'
+    WHEN LOWER(Title) LIKE '%mid%' OR LOWER(Title) LIKE '%associate%' THEN 'Mid-Level'
+    WHEN LOWER(Title) LIKE '%senior%' THEN 'Senior'
+    WHEN LOWER(Title) LIKE '%lead%' 
+      OR LOWER(Title) LIKE '%principal%' 
+      OR LOWER(Title) LIKE '%head%' 
+      THEN 'Lead/Principal'
+    WHEN LOWER(Title) LIKE '%manager%' 
+      OR LOWER(Title) LIKE '%architect%' 
+      OR LOWER(Title) LIKE '%director%' 
+      THEN 'Manager/Architect'
+    ELSE 'Unspecified'
+  END AS Level
+FROM `techjobskills.Tech_Skills.jobs_ready`;
