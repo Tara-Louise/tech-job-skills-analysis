@@ -47,3 +47,10 @@ Roles span across Software Engineering, Data, Cloud, AI/ML, Security, and Design
 
 This variety allows analysis across both specialisation and career progression, highlighting which technical and soft skills are mentioned most frequently at each level.
 
+## Project Evolution and Notes 2
+When making visualisations, I noticed that 'Softskills' were grouped together ie Leadership;Project management.
+I used EGEXP_REPLACE(SoftSkills, r'\s*;\s*|\s*,\s*', ';')
+which converts any semicolon/comma with optional spaces into a single ;.
+- Then I SPLIT(..., ';') reliably splits.
+- UNNEST makes one row per skill.
+- LOWER(TRIM(...)) standardizes the tokens.
